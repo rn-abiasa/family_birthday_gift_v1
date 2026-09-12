@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oooh+Baby&family=Pacifico&display=swap");
+@import "tailwindcss";
+
+:root {
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.oooh-baby {
+  font-family: "Oooh Baby", cursive;
+}
+
+.pacifico {
+  font-family: "Pacifico", cursive;
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+}
