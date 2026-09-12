@@ -5,12 +5,18 @@ import "@fontsource/pacifico";
 import "@fontsource-variable/inter";
 import "@fontsource/oooh-baby";
 import "./index.css";
+
 import Cover from "./pages/cover.jsx";
+import Memories from "./pages/memories.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Cover />,
+  },
+  {
+    path: "/memories",
+    element: <Memories />,
   },
 ]);
 

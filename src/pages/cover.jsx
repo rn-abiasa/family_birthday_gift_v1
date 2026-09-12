@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import dika from "../assets/dika.png";
 
 export default function Cover() {
@@ -17,12 +18,14 @@ export default function Cover() {
               src={dika}
             />
           </div>
-          <button
-            href=""
-            className="bg-blue-500 h-10 px-5 rounded-full text-sm font-semibold text-white mt-20"
-          >
-            OPEN
-          </button>
+          <Link to="/memories">
+            <button
+              href=""
+              className="bg-white h-10 px-5 rounded-full text-sm font-semibold text-black mt-20"
+            >
+              OPEN
+            </button>
+          </Link>
         </section>
       </main>
     </>
