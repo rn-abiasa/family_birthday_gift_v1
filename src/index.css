@@ -144,3 +144,105 @@
     transform: translateY(var(--lift, 4px)) rotate(var(--sway, 1deg));
   }
 }
+
+/* ══ Page transition ═══════════════════════════════════════
+   A single fade-and-rise on each page's own root, so moving
+   between sections never feels like a hard cut. */
+.page-enter {
+  animation: page-fade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ══ Typewriter ═════════════════════════════════════════════
+   The blinking caret at the end of the revealed text. */
+.type-cursor {
+  display: inline-block;
+  width: 2px;
+  margin-left: 2px;
+  background: currentColor;
+  animation: type-blink 0.9s step-end infinite;
+}
+
+@keyframes type-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ══ Reason cards ═══════════════════════════════════════════
+   The top card's transform is written inline per pointer
+   frame (see ReasonStack.jsx) — these two data attributes are
+   the only two moments it should ALSO transition on: flying
+   off after a swipe, and springing back when a swipe falls
+   short. While the finger is still down, neither is set, so
+   the card tracks the pointer with no lag. */
+.reason-card {
+  touch-action: pan-y;
+  will-change: transform;
+}
+
+.reason-card[data-leaving="true"] {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease;
+}
+
+.reason-card[data-snap="true"] {
+  transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+/* ══ Confetti ═══════════════════════════════════════════════
+   One element per piece, one CSS animation, no JS ticking
+   after it's launched — the compositor does the falling. */
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  opacity: 0.9;
+  animation-name: confetti-fall;
+  animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift, 0px), 110vh, 0)
+      rotate(var(--spin, 360deg));
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+
+  .type-cursor {
+    animation: none;
+  }
+
+  .confetti-piece {
+    animation: none;
+    display: none;
+  }
+}

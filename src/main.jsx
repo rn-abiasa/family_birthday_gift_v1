@@ -8,6 +8,10 @@ import "./index.css";
 
 import Cover from "./pages/cover.jsx";
 import Memories from "./pages/memories.jsx";
+import SpecialMessage from "./pages/special-message.jsx";
+import Reasons from "./pages/reasons.jsx";
+import OurSongs from "./pages/our-songs.jsx";
+import BirthdayWish from "./pages/birthday-wish.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +21,22 @@ const router = createBrowserRouter([
   {
     path: "/memories",
     element: <Memories />,
+  },
+  {
+    path: "/special-message",
+    element: <SpecialMessage />,
+  },
+  {
+    path: "/reasons",
+    element: <Reasons />,
+  },
+  {
+    path: "/our-songs",
+    element: <OurSongs />,
+  },
+  {
+    path: "/birthday-wish",
+    element: <BirthdayWish />,
   },
 ]);
 
