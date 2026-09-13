@@ -12,7 +12,7 @@ const REASONS = [
 
 export default function Reasons() {
   return (
-    <main className="page-enter min-h-screen bg-gray-50 px-6 py-16">
+    <main className="page-enter min-h-dvh bg-gray-50 px-6 py-16">
       <section className="mx-auto flex max-w-md flex-col items-center text-center">
         <h1 className="oooh-baby text-4xl text-blue-950/80">
           Alasan Kamu Spesial

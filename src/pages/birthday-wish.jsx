@@ -18,7 +18,7 @@ export default function BirthdayWish() {
   const makeWish = () => setBurst((n) => n + 1);
 
   return (
-    <main className="page-enter relative min-h-screen overflow-hidden bg-gray-50 px-6 py-16">
+    <main className="page-enter relative min-h-dvh overflow-hidden bg-gray-50 px-6 py-16">
       {burst > 0 && <Confetti key={burst} />}
 
       <section className="relative mx-auto flex max-w-md flex-col items-center text-center">

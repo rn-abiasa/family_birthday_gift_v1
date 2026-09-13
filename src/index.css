@@ -232,17 +232,129 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .page-enter {
-    animation: none;
-  }
+/* These extras (page fade, typing caret, confetti, the cover
+   reveal, the polaroid float below) deliberately do NOT turn
+   off under prefers-reduced-motion. Several Android phones
+   ship a battery-saving mode that flips this flag on by
+   default — nobody chose it — and that was quietly killing
+   every animation on this site on mobile, including the ones
+   the moment actually needs (the confetti, the reveal). The
+   ring's own drift and tilt in Carousel.jsx keep their
+   reduced-motion support, since that one is a deliberate,
+   documented accessibility choice made there on purpose. */
 
-  .type-cursor {
-    animation: none;
-  }
+/* ══ Cover entrance ══════════════════════════════════════
+   A small sequence instead of one fade: the title drops in, a
+   soft burst blooms behind the number as it pops with an
+   overshoot, the photo slides in over it, and the button rises
+   in last. Opening the page should feel like a little reveal,
+   not a slide loading. */
+.cover-title {
+  animation: cover-drop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  .confetti-piece {
-    animation: none;
-    display: none;
+.cover-burst {
+  animation: cover-burst 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.cover-number {
+  animation: cover-pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s both;
+}
+
+.cover-photo {
+  animation: cover-photo-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s both;
+}
+
+.cover-btn {
+  animation: cover-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both;
+}
+
+@keyframes cover-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cover-pop {
+  0% {
+    opacity: 0;
+    transform: rotate(-5deg) scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-5deg) scale(1);
+  }
+}
+
+@keyframes cover-photo-in {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) rotate(-24deg) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(-10deg) scale(1);
+  }
+}
+
+@keyframes cover-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cover-burst {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+/* ══ Polaroid decorations (Our Songs) ══════════════════════
+   A white-bordered frame with a little strip of "tape", so a
+   plain photo reads as a keepsake stuck on the page instead of
+   a generic thumbnail. */
+.polaroid {
+  position: relative;
+  border-radius: 3px;
+}
+
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 46px;
+  height: 18px;
+  background: rgba(251, 191, 36, 0.55);
+  transform: translateX(-50%) rotate(-3deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.polaroid-float {
+  animation: polaroid-bob var(--pf-duration, 6s) ease-in-out infinite;
+}
+
+@keyframes polaroid-bob {
+  0%,
+  100% {
+    transform: translateY(calc(var(--pf-lift, 6px) * -1)) rotate(var(--pf-rot, -4deg));
+  }
+  50% {
+    transform: translateY(var(--pf-lift, 6px)) rotate(var(--pf-rot, -4deg));
   }
 }

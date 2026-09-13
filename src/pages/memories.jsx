@@ -3,7 +3,7 @@ import { Carousel } from "../components/Carousel";
 
 export default function Memories() {
   return (
-    <main className="page-enter relative min-h-screen overflow-hidden bg-gray-50 px-5 py-14">
+    <main className="page-enter relative min-h-dvh overflow-hidden bg-gray-50 px-5 py-14">
       <div className="pointer-events-none absolute -left-10 top-10 h-40 w-40 rounded-full bg-blue-900/5 blur-2xl" />
       <div className="pointer-events-none absolute -right-8 bottom-24 h-48 w-48 rounded-full bg-blue-900/5 blur-2xl" />
 

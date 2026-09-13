@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 
-import dika from "../assets/dika.png";
 import one from "../assets/1.webp";
 import two from "../assets/2.webp";
 import three from "../assets/3.webp";
